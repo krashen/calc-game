@@ -2,10 +2,11 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 const Display = () => {
-	const current = useSelector((state) => state.current);
+	const level = useSelector((state) => state.level);
+
 	return (
 		<div className="display">
-			<h1>{current}</h1>
+			<h1>{level}</h1>
 		</div>
 	);
 };
