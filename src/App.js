@@ -1,14 +1,15 @@
 
 import './App.css';
-import { Display, } from './components/'
+import Display from './components/displayComponent'
+import { useSelector } from "react-redux";
+import React from "react";
 
 function App() {
+  const state = useSelector((state) => state);
+
   return (
     <div className="App">
-      <CalcDisplay className="display" calcString={} />
-      <CalcInput />
-      <Sandclock time={} />
-      <Board scores={} />
+      <Display className="display" value={state.current} />     
     </div>
   );
 }
