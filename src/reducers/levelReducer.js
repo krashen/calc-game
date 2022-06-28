@@ -1,4 +1,4 @@
-const reducer = (state = 0, action) => {
+const levelReducer = (state = 0, action) => {
 	switch (action.type) {
 		case "levelup":
 			return state + action.payload;
@@ -8,4 +8,4 @@ const reducer = (state = 0, action) => {
 }
 
 
-export default reducer;
+export default levelReducer;
