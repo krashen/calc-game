@@ -1,14 +1,18 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-const Display = () => {
-	const level = useSelector((state) => state.level);
-
+const Display = (props) => {
 	return (
 		<div className="display">
-			<h1>{level}</h1>
+			<h1>{props.currentSum}</h1>
 		</div>
-	);
-};
+	);		
+}
+
+
+// Validates props
+Display.propTypes = {
+  currentSum: PropTypes.string
+}
 
 export default Display

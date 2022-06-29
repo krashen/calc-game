@@ -7,12 +7,10 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 function App() {
-
-  const state = useSelector((store) => store);
-  console.log(state);
+  const score = useSelector(store => store.score);
   return (
     <div className="App">
-      <Display />
+      <Display currentSum={score.toString()} />
       <Form />
       <Hourglass />
     </div>
