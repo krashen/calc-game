@@ -1,7 +1,9 @@
+import * as actions from '../constants/actions';
+
 const levelReducer = (state = 0, action) => {
 	switch (action.type) {
-		case "levelup":
-			return state + action.payload;
+		case actions.LEVEL_UP:
+			return state ++;
 		default:
 			return state;
 	}

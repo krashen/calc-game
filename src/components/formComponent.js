@@ -3,7 +3,7 @@ import React from "react";
 const Form = () => {
 	return (
 		<form className="form-class">
-			<input type="text" />
+			<input type="number" />
 		</form>
 	);
 };
