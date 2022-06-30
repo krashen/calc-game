@@ -1,21 +1,24 @@
+// Plugins
+import React from 'react';
 
-import './App.css';
+// Components
 import Display from './components/displayComponent';
 import Form  from './components/formComponent';
 import Hourglass from './components/hourglassComponent';
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { generateSum } from './helpers/index';
+import StartButton from './components/startButtonComponent';
+
+//Styles
+import './App.css';
 
 function App() {
-  const level = useSelector(store => store.level);
-  const [val1, val2] = generateSum(level);
+
   return (
     <div className="App">
-      <Display currentSum={val1.toString()} />
-      <Display currentSum={"+"} />
-      <Display currentSum={val2.toString()} />
+      <div className="displayBox">
+        <Display />
+      </div>
       <Form />
+      <StartButton />
       <Hourglass />
     </div>
   );

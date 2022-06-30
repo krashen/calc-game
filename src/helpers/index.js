@@ -1,4 +1,4 @@
-export const generateSum = (seed) => {
+export const generatePair = (seed) => {
     let min = 10**(seed-1);
     let max = 10**seed;
     let random1 = Math.round(Math.random() * (max - min) + min);

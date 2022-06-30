@@ -1,15 +1,19 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { bindActionCreators} from 'redux';
+//import { useDispatch, useSelector } from 'react-redux';
+//import { bindActionCreators} from 'redux';
+
 // Unified action creators
-import { actionCreators } from '../indexActionCreators';
+//import { actionCreators } from '../indexActionCreators';
 
 const Form = () => {
-	const dispatch = useDispatch();
-	const { mipri } = bindActionCreators(actionCreators, dispatch);
+	//const store = useSelector(store => store);
+	//console.log(store)
+	//const dispatch = useDispatch();
+	//const { updateCurrentEqual } = bindActionCreators(actionCreators, dispatch);
+
 	const handleSubmit = e => {
 		e.preventDefault();
-		mipri(e.target[0].value);
+		//updateCurrentEqual(e.target[0].value);
 	
 	}
 	return (
