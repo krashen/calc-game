@@ -7,8 +7,8 @@ const levelReducer = (state = config.INITIAL_LEVEL, action) => {
 			return config.INITIAL_LEVEL;
 
 		case actions.LEVEL_UP:
-			return state++;
-			
+			return state + 1;
+
 		default:
 			return state;
 	}

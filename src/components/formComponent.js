@@ -1,19 +1,33 @@
 import React from 'react';
-//import { useDispatch, useSelector } from 'react-redux';
-//import { bindActionCreators} from 'redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { bindActionCreators} from 'redux';
 
 // Unified action creators
-//import { actionCreators } from '../indexActionCreators';
+import { actionCreators } from '../indexActionCreators';
 
 const Form = () => {
-	//const store = useSelector(store => store);
-	//console.log(store)
-	//const dispatch = useDispatch();
-	//const { updateCurrentEqual } = bindActionCreators(actionCreators, dispatch);
+	const currentEqual = useSelector(store => store.currentEqual);	
+	const dispatch = useDispatch();
+	const { 
+		updateSublevel,
+		updateLevel,
+		updateSumNumbers,
+		updateCurrentEqual
+		} = bindActionCreators(actionCreators, dispatch);
 
 	const handleSubmit = e => {
 		e.preventDefault();
-		//updateCurrentEqual(e.target[0].value);
+		const res = e.target[0].value;
+		e.target.reset();
+
+		if (res == currentEqual) {
+			updateLevel();
+			updateSublevel();
+			updateSumNumbers();
+			updateCurrentEqual();
+		} else {
+			console.log('No')
+		}
 	
 	}
 	return (

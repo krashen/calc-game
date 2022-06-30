@@ -1,30 +1,27 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { bindActionCreators} from 'redux';
-import * as helpers from '../helpers/index';
 
 // Unified action creators
 import { actionCreators } from '../indexActionCreators';
 
 const StartButton = () => {
-	const store = useSelector(store => store);	
 	const dispatch = useDispatch();
-	const sumPair = helpers.generatePair(store.level);	
 	const { updateSumNumbers,
 			updateCurrentEqual,
-			resetSublevel,
-			resetLevel,
+			updateSublevel,
+			updateLevel,
 			setGame 
 		} = bindActionCreators(actionCreators, dispatch);
 
 	const handleSubmit = e => {
 		e.preventDefault();
-		updateCurrentEqual(sumPair.reduce((a,b) => a+b));
-		updateSumNumbers(sumPair);
-		resetSublevel();
-		resetLevel();
+	
+		updateSumNumbers();
+		updateCurrentEqual();
+		updateSublevel(true);
+		updateLevel(true);
 		setGame(true);
-		console.log(store);
 	}
 	return (
 		<form 

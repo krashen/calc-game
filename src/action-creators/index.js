@@ -1,21 +1,61 @@
 import * as actions from '../constants/actions';
+import * as config from '../constants/config';
+import * as helpers from '../helpers/index';
 
-export const updateSumNumbers = (nums) => {
-	return (dispatch) => {
+
+export const updateSumNumbers = () => {
+	return (dispatch, getState) => {
+		const sumNumbers = helpers.generatePair(getState().level);
 		dispatch({
 			type: actions.UPDATE_SUM_NUMBERS,
-			payload: nums
+			payload: sumNumbers
 		})
 	}
 }
 
-export const updateCurrentEqual = (num) => {
-	return (dispatch) => {
+export const updateCurrentEqual = () => {
+	return (dispatch, getState) => {
+		console.log(getState());
 		dispatch({
 			type: actions.UPDATE_CURRENT_EQUAL,
-			payload: num
+			payload: getState().sumNumbers.reduce((a,b) => a + b)
 		})
 	}
+}
+
+export const updateSublevel = (reset = false) => {	
+	return (dispatch, getState) => {
+		if (reset || getState().sublevel == config.SUBLEVEL_LENGTH) {
+			dispatch({
+				type: actions.RESET_SUBLEVEL
+			})
+		} else {
+			dispatch({
+				type: actions.UPDATE_SUBLEVEL
+			})	
+		}
+		
+	}		
+}
+
+export const updateLevel = (reset = false) => {
+	
+	return (dispatch, getState) => {
+		if (reset) {
+			dispatch({
+				type: actions.LEVEL_RESET
+			})
+		} else if (getState().sublevel == config.SUBLEVEL_LENGTH) {
+			dispatch({
+				type: actions.LEVEL_UP
+			})
+		} else {
+			dispatch({
+				type: actions.DO_NOTHING
+			})
+		}
+		
+	}		
 }
 
 export const setGame = (b) => {
@@ -32,24 +72,6 @@ export const setGame = (b) => {
 		})
 	}
 	
-}
-
-
-// Reset game
-export const resetSublevel = () => {
-	return (dispatch) => {
-		dispatch({
-			type: actions.RESET_SUBLEVEL
-		})
-	}
-}
-
-export const resetLevel = () => {
-	return (dispatch) => {
-		dispatch({
-			type: actions.LEVEL_RESET
-		})
-	}
 }
 
 
