@@ -1,6 +1,6 @@
 import * as actions from '../constants/actions';
 
-export const mipri = (i) => {
+export const startGame = (i) => {
 	return (dispatch) => {
 		dispatch({
 			type: actions.INCREASE_SCORE,
@@ -9,11 +9,3 @@ export const mipri = (i) => {
 	}
 }
 
-export const noda = (i) => {
-	return (dispatch) => {
-		dispatch({
-			type: actions.INCREASE_SCORE,
-			payload: i
-		})
-	}
-}

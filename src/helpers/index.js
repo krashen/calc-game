@@ -1,6 +1,10 @@
- export const generate = (seed, subseed) => {
- 	return {
- 		string: 'hola' + seed,
- 		result: 1000 + subseed
- 	}
- }
+export const generateSum = (seed) => {
+    let min = 10**(seed-1);
+    let max = 10**seed;
+    let random1 = Math.round(Math.random() * (max - min) + min);
+    let random2 = Math.round(Math.random() * (max - min) + min);
+    
+
+    return [random1, random2];
+}
+
