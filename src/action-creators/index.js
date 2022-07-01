@@ -4,6 +4,7 @@ import * as helpers from '../helpers/index';
 
 
 export const updateSumNumbers = () => {
+
 	return (dispatch, getState) => {
 		const sumNumbers = helpers.generatePair(getState().level);
 		dispatch({
@@ -11,18 +12,22 @@ export const updateSumNumbers = () => {
 			payload: sumNumbers
 		})
 	}
+
 }
 
 export const updateCurrentEqual = () => {
+
 	return (dispatch, getState) => {
 		dispatch({
 			type: actions.UPDATE_CURRENT_EQUAL,
 			payload: getState().sumNumbers.reduce((a,b) => a + b)
 		})
 	}
+
 }
 
 export const updateSublevel = (reset = false) => {	
+
 	return (dispatch, getState) => {
 		if (reset || getState().sublevel == config.SUBLEVEL_LENGTH) {
 			dispatch({
@@ -32,9 +37,21 @@ export const updateSublevel = (reset = false) => {
 			dispatch({
 				type: actions.UPDATE_SUBLEVEL
 			})	
-		}
-		
-	}		
+		}		
+	}	
+
+}
+
+export const updateTimer = () => {	
+
+	return (dispatch, getState) => {
+		const level = getState().level		
+		dispatch({
+			type: actions.UPDATE_TIMER,
+			payload: level * config.TIMER_INCREASE_FACTOR
+		})		
+	}
+
 }
 
 export const updateLevel = (reset = false) => {
@@ -52,25 +69,35 @@ export const updateLevel = (reset = false) => {
 			dispatch({
 				type: actions.DO_NOTHING
 			})
-		}
-		
+		}	
 	}		
 }
 
-export const setGame = (b) => {
-	if (b) {
+
+export const setGame = (start) => {
+
+	if (start) {
 		return (dispatch) => {
 			dispatch({
 				type: actions.START_GAME
 			})
-		}
+		}	
 	}
 	return (dispatch) => {
 		dispatch({
 			type: actions.STOP_GAME
 		})
-	}
-	
+	}			
+}
+
+export const addScoreToRank = (score) => {	
+
+	return (dispatch) => {		
+		dispatch({
+			type: actions.ADD_SCORE,
+			payload: score
+		})			
+	}	
 }
 
 

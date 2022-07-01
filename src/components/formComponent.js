@@ -12,7 +12,8 @@ const Form = () => {
 		updateSublevel,
 		updateLevel,
 		updateSumNumbers,
-		updateCurrentEqual
+		updateCurrentEqual,
+		updateTimer
 		} = bindActionCreators(actionCreators, dispatch);
 
 	const handleSubmit = e => {
@@ -26,12 +27,13 @@ const Form = () => {
 				updateSublevel();
 				updateSumNumbers();
 				updateCurrentEqual();
+				updateTimer();
 			} else {
 				console.log('No')
 			}	
 		}	
 	}
-	
+
 	return (
 		<form 
 			className="inputResult"

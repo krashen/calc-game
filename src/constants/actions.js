@@ -12,3 +12,4 @@ export const UPDATE_SUM_NUMBERS = "UPDATE_SUM_NUMBERS";
 export const START_GAME = "START_GAME";
 export const STOP_GAME = "STOP_GAME";
 export const DO_NOTHING = "DO_NOTHING";
+export const UPDATE_TIMER = "UPDATE_TIMER";
