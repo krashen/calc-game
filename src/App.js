@@ -1,5 +1,6 @@
 // Plugins
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 // Components
 import Display from './components/displayComponent';
@@ -11,10 +12,11 @@ import StartButton from './components/startButtonComponent';
 import './App.css';
 
 function App() {
-
+  const gameStarted = useSelector(store => store.gameStarted);
+  
   return (
-    <div className="App">
-      <div className="displayBox">
+    <div className={`App ${ gameStarted ? "gameStarted" : "gameStopped" }`}>
+      <div className="displayContainer">
         <Display />
       </div>
       <Form />

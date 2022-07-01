@@ -20,19 +20,21 @@ const Form = () => {
 		const res = e.target[0].value;
 		e.target.reset();
 
-		if (res == currentEqual) {
-			updateLevel();
-			updateSublevel();
-			updateSumNumbers();
-			updateCurrentEqual();
-		} else {
-			console.log('No')
-		}
-	
+		if (res.length != 0) {
+			if (res == currentEqual) {
+				updateLevel();
+				updateSublevel();
+				updateSumNumbers();
+				updateCurrentEqual();
+			} else {
+				console.log('No')
+			}	
+		}	
 	}
+	
 	return (
 		<form 
-			className="form-class"
+			className="inputResult"
 			onSubmit={handleSubmit}
 		>
 			<input type="number" />

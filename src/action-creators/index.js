@@ -15,7 +15,6 @@ export const updateSumNumbers = () => {
 
 export const updateCurrentEqual = () => {
 	return (dispatch, getState) => {
-		console.log(getState());
 		dispatch({
 			type: actions.UPDATE_CURRENT_EQUAL,
 			payload: getState().sumNumbers.reduce((a,b) => a + b)

@@ -25,7 +25,7 @@ const StartButton = () => {
 	}
 	return (
 		<form 
-			className="form-class"
+			className="startButton"
 			onSubmit={handleSubmit}
 		>
 			<button type="submit">Start</button>

@@ -4,7 +4,6 @@ export const generatePair = (seed) => {
     let random1 = Math.round(Math.random() * (max - min) + min);
     let random2 = Math.round(Math.random() * (max - min) + min);
     
-
     return [random1, random2];
 }
 
