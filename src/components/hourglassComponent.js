@@ -2,20 +2,22 @@ import { React, useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { bindActionCreators } from "redux";
 import * as config from '../constants/config';
+
 // Bootstrap
 import ProgressBar from 'react-bootstrap/ProgressBar';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Unified action creators
 import { actionCreators } from '../indexActionCreators';
 
+// Components
+import ScoreAdder from './scoreAdderComponent';
+
 const Hourglass = () => {
 	const dispatch = useDispatch();
 	const { 
-		setGame,
-		addScoreToRank,
 		updateSublevel,
-		updateLevel
+		updateLevel,
+		setGame
 	} = bindActionCreators(actionCreators, dispatch);
 
 	// timer in seconds
@@ -45,12 +47,14 @@ const Hourglass = () => {
 	// use State hook to run the timer and gather score
 	const [count, setCount] = useState(timeMultiplied);	
 	const [score, setScore] = useState(0);
-	
+	let [gameStopped, setGameStopped] = useState(false);
+
 	useEffect(() => {
 
 		let timeout = setTimeout(() => {
+
 				// timer logic
-				if(gameStarted){
+				if( gameStarted && !gameStopped ){
 					if (resetPlease) {
 						setCount(() => timeMultiplied);
 						setScore((score) => score + (count * level));
@@ -59,25 +63,37 @@ const Hourglass = () => {
 					else if (count > 0) {	
 						setCount((count) => count - 1)	
 					} else {
-						// +1 to make it different and keep useEffect running
-						setCount(() => timeMultiplied+1); 
-						
+						// this stops the game, but doesn't reset, waiting for score to be pushed
+						setGameStopped(() => true);
+
 						// clean timeout
 						clearTimeout(timeout);
 						timeout = null;
 
-						// update store
-						addScoreToRank(score);
-						setScore(() => 0);
+						// restart store
 						updateSublevel(true);
 						updateLevel(true);
-						setGame(false);
+
+						// rest of resetting in callback passed to Score Adder
 					}
 				}
 			}, 1000/config.TIMER_SPEED_FACTOR);
 			return () => clearTimeout(timeout)
 		}
 	);
+
+	// function to pass to Score Adder to call at the end
+	const callbackAddScore = () => {
+		setScore(() => 0);
+		// + 1 to make it different and keep useEffect running
+		setCount(() => timeMultiplied + 1);
+
+		// makes sure game isn't stopped
+		setGameStopped(() => false);
+
+		// reset the game
+		setGame(false);
+	}
 
 	return (
 		<div className={"hourglass " + sublevel} >
@@ -87,6 +103,12 @@ const Hourglass = () => {
 				key={1} 
 				max={timeMultiplied} 
 			/>
+			{ gameStopped && 
+				<ScoreAdder
+					score={score} 
+					callback={callbackAddScore}
+				/>
+			}
 		</div>
 	);
 };

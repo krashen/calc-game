@@ -22,18 +22,20 @@ input[type=number] {
   text-align: center;
 }
 
-.App.gameStopped .displayContainer, 
-.App.gameStopped .inputResult, 
-.App.gameStopped .hourglass,
-.App.gameStarted .startButton
+.App.gameFinished .displayContainer, 
+.App.gameFinished .inputResult, 
+.App.gameFinished .hourglass,
+.App.gameInitialized .scoreTable,
+.App.gameInitialized .startButton
 {
   display: none;
 }
 
-.App.gameStarted .displayContainer, 
-.App.gameStarted .inputResult, 
-.App.gameStarted .hourglass,
-.App.gameStopped .startButton
+.App.gameInitialized .displayContainer, 
+.App.gameInitialized .inputResult, 
+.App.gameInitialized .hourglass,
+.App.gameFinished .scoreTable,
+.App.gameFinished .startButton
 {
   display: block;
 }
