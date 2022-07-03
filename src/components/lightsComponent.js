@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 const Display = (props) => {
 	let l = props.level
-	console.log(l);
 	return (
 		<div className="lightsContainer">
 			<div className={`light ${ l >= 7 ? "on" : "" }`} />

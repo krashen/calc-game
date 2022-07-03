@@ -16,3 +16,5 @@ export const STOP_SUB_GAME = "STOP_SUB_GAME";
 export const DO_NOTHING = "DO_NOTHING";
 export const UPDATE_TIMER = "UPDATE_TIMER";
 export const RESET_SCORE = "RESET_SCORE";
+export const FAIL_TRUE = "FAIL_TRUE";
+export const FAIL_FALSE = "FAIL_FALSE";

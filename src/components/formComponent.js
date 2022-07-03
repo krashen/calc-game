@@ -16,7 +16,8 @@ const Form = () => {
 		updateLevel,
 		updateSumNumbers,
 		updateCurrentEqual,
-		updateTimer
+		updateTimer,
+		setFail
 		} = bindActionCreators(actionCreators, dispatch);
 
 	const handleSubmit = e => {
@@ -32,7 +33,7 @@ const Form = () => {
 				updateCurrentEqual();
 				updateTimer();
 			} else {
-				console.log('No')
+				setFail(true);
 			}	
 		}	
 	}
@@ -40,7 +41,7 @@ const Form = () => {
 	useEffect(() => {
 		document.getElementById("numberInputForm").reset();
 		document.getElementById("numberInput").focus();
-	},[currentEqual])
+	},[currentEqual, subGameStarted, gameInitialized])
 
 	return (
 		<form 

@@ -120,4 +120,20 @@ export const resetScore = () => {
 	}
 }
 
+export const setFail = (f) => {
+
+	if (f) {
+		return (dispatch) => {
+			dispatch({
+				type: actions.FAIL_TRUE
+			})
+		}	
+	}
+	return (dispatch) => {
+		dispatch({
+			type: actions.FAIL_FALSE
+		})
+	}		
+}
+
 

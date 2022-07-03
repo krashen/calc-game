@@ -18,27 +18,20 @@ const Hourglass = () => {
 		updateSublevel,
 		updateLevel,
 		setGame,
-		setSubGame
+		setSubGame,
+		setFail
 	} = bindActionCreators(actionCreators, dispatch);
 
-	// timer in seconds
-	const timer = useSelector(store => store.timer); 
-
-	// multiplied by factor for timer speeding
-	// you should use this one ahead
-	const timeMultiplied = timer*config.TIMER_SPEED_FACTOR; 
-
-	// at what % bar changes color
-	const barWarning = timeMultiplied / 3;
-	const barDanger = timeMultiplied / 6;
-
-	// store stuff
 	const store = useSelector(store => store);
+
+	const fail = store.fail;
 	const gameInitialized = store.gameInitialized;
 	const sublevel = store.sublevel;
 	const level = store.level;
 	const subGameStarted = store.subGameStarted;
-	
+	const timer = store.timer;
+	const timeMultiplied = timer*config.TIMER_SPEED_FACTOR; 
+
 	// keeps the timer running and resets if sublevel changed
 	let resetPlease = false;
 	
@@ -50,6 +43,15 @@ const Hourglass = () => {
 	// use State hook to run the timer and gather score
 	const [count, setCount] = useState(timeMultiplied);	
 	const [score, setScore] = useState(0);
+
+	// Fail
+	useEffect(() => {
+		let timeout = setTimeout(() => {
+			clearTimeout(timeout);
+			timeout = null;
+		}, 700);
+		return () => clearTimeout(timeout)
+	},[fail]);
 
 	useEffect(() => {
 
@@ -63,10 +65,16 @@ const Hourglass = () => {
 							setScore((score) => score + sublevel + ((count*100)/timeMultiplied * level));
 							resetPlease = false;				
 						}
+						else if (fail) {
+							setFail(false);
+							setCount((count) => count - (timeMultiplied * (config.FAIL_PERCENTAGE/100)));
+						}
 						else if (count > 0) {	
-							setCount((count) => count - 1)	
-						} else {
+							setCount((count) => count - 1)
+						}
+						else {
 							// this stops the game, but doesn't reset, waiting for score to be pushed
+							setCount(() => 0);
 							setSubGame(false);
 							clearTimeout(timeout);
 							timeout = null;
@@ -96,12 +104,11 @@ const Hourglass = () => {
 	return (
 		<div className="hourglass">
 			<ProgressBar 
-				variant={ count < barWarning ? count < barDanger ? "danger " : "warning" : "success" } 
 				now={count} 
 				key={1} 
 				max={timeMultiplied} 
 			/>
-			{ !subGameStarted && 
+			{ !subGameStarted && gameInitialized &&
 				<ScoreAdder
 					score={score} 
 					callback={callbackAddScore}

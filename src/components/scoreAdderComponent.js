@@ -1,5 +1,5 @@
 import { React, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from "redux";
 import PropTypes from 'prop-types';
 
@@ -9,6 +9,7 @@ import { actionCreators } from '../indexActionCreators';
 const ScoreAdder = (props) => {
 	const dispatch = useDispatch();
 	const { addScoreToRank } = bindActionCreators(actionCreators, dispatch);
+	const store = useSelector(store => store);
 	const handleSubmit = e => {
 		e.preventDefault();
 		const res = e.target[0].value;
@@ -32,7 +33,7 @@ const ScoreAdder = (props) => {
 			props.callback();
 		}
 		document.getElementById("addScoreInput").focus();	
-	},[]);
+	},[store.subGameStarted]);
 	
 
 	return (

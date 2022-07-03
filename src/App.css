@@ -157,15 +157,21 @@ body {
 }
 
 .hourglass {
-  padding: 15px 00 00 00;
+  padding: 27px 00 00 00;
 }
 
 .hourglass .progress {
   background: url("./images/barWood.png") no-repeat;
   background-size: contain;
-  width: 329px;
-  height:  56px;
-  padding: 37px 15px 27px 14px;
+  width: 214px;
+  height:  5px;
+  padding: 35px 42px 68px 60px;
   box-sizing: content-box;
   margin: 00 auto;
+}
+.hourglass .progress div {
+  background: #8f4333;
+  border-radius: 10px;
+  background-color: #8f4333; /* For browsers that do not support gradients */
+  background-image: linear-gradient(to right, #8f4333 , #ff0000);
 }
