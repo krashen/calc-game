@@ -27,8 +27,9 @@ const Hourglass = () => {
 	// you should use this one ahead
 	const timeMultiplied = timer*config.TIMER_SPEED_FACTOR; 
 
-	// at 25% bar changes color
-	const barStatusChange = timeMultiplied / 4;
+	// at what % bar changes color
+	const barWarning = timeMultiplied / 3;
+	const barDanger = timeMultiplied / 6;
 
 	// store stuff
 	const store = useSelector(store => store);
@@ -58,7 +59,7 @@ const Hourglass = () => {
 					if( !gameStopped ){
 						if (resetPlease) {
 							setCount(() => timeMultiplied);
-							setScore((score) => score + sublevel + (count * level));
+							setScore((score) => score + sublevel + ((count*100)/timeMultiplied * level));
 							resetPlease = false;				
 						}
 						else if (count > 0) {	
@@ -84,23 +85,24 @@ const Hourglass = () => {
 		}
 	);
 
-	// function to pass to Score Adder to call at the end
+	// callback to pass to Score Adder component
 	const callbackAddScore = () => {
 		setScore(() => 0);
+
 		// + 1 to make it different and keep useEffect running
 		setCount(() => timeMultiplied + 1);
 
 		// makes sure game isn't stopped
 		setGameStopped(() => false);
 
-		// reset the game
+		// resets the game
 		setGame(false);
 	}
 
 	return (
 		<div className={"hourglass " + sublevel} >
 			<ProgressBar 
-				variant={ count < barStatusChange ? "warning" : "success" } 
+				variant={ count < barWarning ? count < barDanger ? "danger " : "warning" : "success" } 
 				now={count} 
 				key={1} 
 				max={timeMultiplied} 

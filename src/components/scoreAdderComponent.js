@@ -1,4 +1,4 @@
-import React from 'react';
+import { React, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { bindActionCreators } from "redux";
 import PropTypes from 'prop-types';
@@ -27,9 +27,12 @@ const ScoreAdder = (props) => {
 	}
 
 	// if 0 points restarts the game
-	if (props.score == 0){
-		props.callback();
-	}
+	useEffect(() => {
+		if (props.score == 0){
+			props.callback();
+		}	
+	},[]);
+	
 
 	return (
 		<form 
