@@ -4,7 +4,7 @@ import sublevelReducer from "./sublevelReducer";
 import rankReducer from "./rankReducer";
 import currentEqualReducer from "./currentEqualReducer";
 import sumNumbersReducer from "./sumNumbersReducer";
-import gameStartedReducer from "./gameStartedReducer";
+import gameInitializedReducer from "./gameStartedReducer";
 import timerReducer from "./timerReducer";
 
 const reducers = combineReducers({
@@ -13,7 +13,7 @@ const reducers = combineReducers({
 		rank: rankReducer,
 		currentEqual: currentEqualReducer,
 		sumNumbers: sumNumbersReducer,
-		gameStarted: gameStartedReducer,
+		gameInitialized: gameInitializedReducer,
 		timer: timerReducer
 	})
 

@@ -1,6 +1,6 @@
 import * as actions from '../constants/actions';
 
-const gameStartedReducer = (state = false, action) => {
+const gameInitializedReducer = (state = false, action) => {
 	switch (action.type) {
 		case actions.START_GAME:			
 			return true;
@@ -13,4 +13,4 @@ const gameStartedReducer = (state = false, action) => {
 	}
 }
 
-export default gameStartedReducer;
+export default gameInitializedReducer;

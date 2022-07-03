@@ -14,10 +14,10 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
-  const gameStarted = useSelector(store => store.gameStarted);
+  const gameInitialized = useSelector(store => store.gameInitialized);
   
   return (
-    <div className={`App ${ gameStarted ? "gameInitialized" : "gameFinished" }`}>
+    <div className={`App ${ gameInitialized ? "gameInitialized" : "gameFinished" }`}>
       <div className="displayContainer">
         <Display />
       </div>

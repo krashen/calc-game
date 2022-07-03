@@ -32,7 +32,7 @@ const Hourglass = () => {
 
 	// store stuff
 	const store = useSelector(store => store);
-	const gameStarted = store.gameStarted;
+	const gameInitialized = store.gameInitialized;
 	const sublevel = store.sublevel;
 	const level = store.level;
 	
@@ -54,8 +54,8 @@ const Hourglass = () => {
 		let timeout = setTimeout(() => {
 
 				// timer logic
-				if( gameStarted && !gameStopped ){
-					if (resetPlease) {
+				if( !gameStopped ){
+					if (resetPlease && gameInitialized) {
 						setCount(() => timeMultiplied);
 						setScore((score) => score + (count * level));
 						resetPlease = false;				
