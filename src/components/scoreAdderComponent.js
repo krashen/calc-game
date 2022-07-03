@@ -16,7 +16,7 @@ const ScoreAdder = (props) => {
 
 		if (res.length != 0) {			
 			addScoreToRank({
-				score: props.score,
+				score: Math.round(props.score),
 				name: res
 			});
 			// restarts the game
