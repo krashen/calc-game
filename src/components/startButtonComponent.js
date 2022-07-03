@@ -1,4 +1,4 @@
-import React from 'react';
+import { React, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators} from 'redux';
 
@@ -25,12 +25,18 @@ const StartButton = () => {
 		updateLevel(true);
 		setGame(true);
 		setSubGame(true);
-	}	
+	}
+	useEffect(() => {
+		if (!gameInitialized) {
+			document.getElementById("startButton").focus();
+		}
+	},[gameInitialized])	
 	return (
 		<div className={`startButton ${gameInitialized ? "startDisabled" : "startEnabled" }`}>
 			<button
 				onClick={handleClick} 
 				type="submit"
+				id="startButton"
 				disabled={gameInitialized}
 			/>
 		</div>

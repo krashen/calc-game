@@ -49,8 +49,7 @@ const Hourglass = () => {
 		let timeout = setTimeout(() => {
 			clearTimeout(timeout);
 			timeout = null;
-		}, 700);
-		return () => clearTimeout(timeout)
+		}, 700)
 	},[fail]);
 
 	useEffect(() => {

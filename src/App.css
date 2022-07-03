@@ -22,6 +22,11 @@ body {
   padding: 60px 00 00 00;
 }
 
+button {
+  outline: none;
+  border: none;
+}
+
 .boardContainer {
   background: url("./images/board.png") no-repeat center;
   background-size: contain;
