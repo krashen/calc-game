@@ -43,20 +43,6 @@ button {
   text-align: center;
 }
 
-.App.gameFinished .displayContainer h2, 
-.App.gameFinished .displayContainer h3, 
-.App.gameInitialized .scoreTable
-{
-  display: none;
-}
-
-.App.gameInitialized .displayContainer h2, 
-.App.gameInitialized .displayContainer h3,
-.App.gameFinished .scoreTable
-{
-  display: block;
-}
-
 .buttonAndDisplay {
   position: relative;
   padding: 17px 00 00 00;
@@ -102,10 +88,11 @@ button {
 
 .display {
   text-align: center;
-  color: #b1e5a4;
+  color: #cd9133;
   font-family: 'Allerta Stencil', sans-serif;
   padding: 52px 00 00 00;
   vertical-align: middle;
+  position: relative;
 }
 .display h2 {
   padding: 00;
@@ -119,8 +106,26 @@ button {
   margin: 00;
   font-size: 30px;
   line-height: normal;
-  color: #89bd7d;
+  color: #875d8d;
   height: 27px;
+}
+
+.display.displayStopped h2,
+.display.displayStopped h3 {
+  display: none;
+}
+
+.failLight {
+  background: url("./images/fail.png") no-repeat right top;
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 0;
+  left: 107px;
+}
+.failLight.on {
+  background-position: left top;
 }
 
 .inputResult {
@@ -179,4 +184,45 @@ button {
   border-radius: 10px;
   background-color: #8f4333; /* For browsers that do not support gradients */
   background-image: linear-gradient(to right, #8f4333 , #ff0000);
+}
+
+.inputName {
+  position: relative;
+  text-align: center;
+  font-family: 'Allerta Stencil', sans-serif;
+}
+.inputName .inputNameAbs {
+  display: block;
+  position: absolute;
+  background: #562b63;
+  opacity: 1;
+  padding: 10px;
+  width: 40%;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  top: -250px;
+  border-radius: 10px;
+  filter: drop-shadow(0px 100px 6px rgba(0, 0, 0, 0.50));
+}
+.inputName form {
+  display: block;
+}
+.inputName input {
+  text-align: center;
+  display: block;
+  width: 100%;
+  border-radius: 5px;
+  border-width: 2px;
+  border-color: #bbb;
+  font-size: 15px;
+}
+.inputName button {
+  display: none;
+}
+.inputName .totalScore {
+  color: #efff65;
+  font-weight: bold;
+  font-size: 30px;
+  padding: 00 00 10px 00;
 }

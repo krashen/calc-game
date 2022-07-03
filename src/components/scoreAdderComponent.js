@@ -1,4 +1,4 @@
-import { React, useEffect } from 'react';
+import { React, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from "redux";
 import PropTypes from 'prop-types';
@@ -10,6 +10,7 @@ const ScoreAdder = (props) => {
 	const dispatch = useDispatch();
 	const { addScoreToRank } = bindActionCreators(actionCreators, dispatch);
 	const store = useSelector(store => store);
+	const [nameSent, setNameSent] = useState(true);
 	const handleSubmit = e => {
 		e.preventDefault();
 		const res = e.target[0].value;
@@ -23,7 +24,7 @@ const ScoreAdder = (props) => {
 			// restarts the game
 			props.callback();
 		} else {
-			console.log('Ponete un nombre porfa')	
+			setNameSent(() => false);
 		}	
 	}
 
@@ -37,13 +38,15 @@ const ScoreAdder = (props) => {
 	
 
 	return (
-		<form 
-			className="inputName"
-			onSubmit={handleSubmit}
-		>
-			<input type="text" id="addScoreInput" placeholder="nombre" />
-			<button type="submit">Sipi</button>
-		</form>
+		<div className={`inputName ${ nameSent ? '' : 'noName'}`}>
+			<div className="inputNameAbs">
+					<div className="totalScore">{Math.round(props.score)}</div>
+					<form onSubmit={handleSubmit}>
+						<input type="text" id="addScoreInput" placeholder="Your name" />
+						<button type="submit" />
+					</form>
+				</div>
+		</div>
 	);		
 }
 

@@ -44,14 +44,6 @@ const Hourglass = () => {
 	const [count, setCount] = useState(timeMultiplied);	
 	const [score, setScore] = useState(0);
 
-	// Fail
-	useEffect(() => {
-		let timeout = setTimeout(() => {
-			clearTimeout(timeout);
-			timeout = null;
-		}, 700)
-	},[fail]);
-
 	useEffect(() => {
 
 		if (gameInitialized) {
