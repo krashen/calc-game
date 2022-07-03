@@ -1,9 +1,12 @@
-import React from 'react';
+import { React, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators} from 'redux';
 
 // Unified action creators
 import { actionCreators } from '../indexActionCreators';
+
+// Components
+import NumPad from 'react-numpad';
 
 const Form = () => {
 	const currentEqual = useSelector(store => store.currentEqual);	
@@ -15,6 +18,7 @@ const Form = () => {
 		updateCurrentEqual,
 		updateTimer
 		} = bindActionCreators(actionCreators, dispatch);
+	const [num, setNum] = useState(0);
 
 	const handleSubmit = e => {
 		e.preventDefault();
@@ -34,14 +38,30 @@ const Form = () => {
 		}	
 	}
 
+	const handleChange = e => {
+		setNum(() => e);
+	}
+
 	return (
 		<form 
 			className="inputResult"
 			onSubmit={handleSubmit}
 		>
-			<input type="number" />
-			<button type="submit" />
+			<input
+				type="number"
+				value={num}
+			/>
+			<button
+				className="inputButton"
+				type="submit"
+			/>
+			<NumPad.Number
+				posiiton="center"
+				onChange={handleChange}
+				inline={true}
+			/>
 		</form>
+
 	);
 };
 
