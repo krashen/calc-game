@@ -28,11 +28,11 @@ const ScoreAdder = (props) => {
 
 	// if 0 points restarts the game
 	useEffect(() => {
-		document.getElementById("addScoreInput").focus();
 		if (props.score == 0){
 			props.callback();
-		}	
-	},[]);
+		}
+		document.getElementById("addScoreInput").focus();	
+	},[props.score]);
 	
 
 	return (
