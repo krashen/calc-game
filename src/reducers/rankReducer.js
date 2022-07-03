@@ -10,6 +10,8 @@ const rankReducer = (state = [], action) => {
 
 			return newState.slice(0,10);
 		}
+		case actions.RESET_SCORE:
+			return [];
 		default:
 			return state;
 	}

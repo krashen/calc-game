@@ -8,9 +8,7 @@ import { actionCreators } from '../indexActionCreators';
 
 const ScoreAdder = (props) => {
 	const dispatch = useDispatch();
-	const { 
-		addScoreToRank,
-	} = bindActionCreators(actionCreators, dispatch);
+	const { addScoreToRank } = bindActionCreators(actionCreators, dispatch);
 	const handleSubmit = e => {
 		e.preventDefault();
 		const res = e.target[0].value;
@@ -21,12 +19,14 @@ const ScoreAdder = (props) => {
 				score: props.score,
 				name: res
 			});
+			// restarts the game
 			props.callback();
 		} else {
 			console.log('Ponete un nombre porfa')	
 		}	
 	}
 
+	// if 0 points restarts the game
 	if (props.score == 0){
 		props.callback();
 	}

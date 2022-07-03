@@ -100,5 +100,13 @@ export const addScoreToRank = (score) => {
 	}	
 }
 
+export const resetScore = () => {
+
+	return (dispatch) => {
+		dispatch({
+			type: actions.RESET_SCORE
+		})
+	}
+}
 
 
