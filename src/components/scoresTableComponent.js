@@ -4,9 +4,7 @@ import Table from 'react-bootstrap/Table';
 
 const ScoresTable = () => {
 	const rank = useSelector(store => store.rank);
-	const rankSorted = [...rank].sort((a, b) => {
-		return b.score - a.score;
-	});
+	
 	return (
 		<div className="scoreTable">
 			<h2>Rank:</h2>
@@ -18,7 +16,7 @@ const ScoresTable = () => {
 					</tr>
 				</thead>
 				<tbody>
-					{rankSorted.slice(0,10).map((r,i)=>(
+					{rank.map((r,i)=>(
 						<tr key={i}>
 							<td>{r.name}</td>
 							<td>{r.score}</td>
