@@ -32,7 +32,7 @@ const ScoreAdder = (props) => {
 			props.callback();
 		}
 		document.getElementById("addScoreInput").focus();	
-	},[props.score]);
+	},[]);
 	
 
 	return (
