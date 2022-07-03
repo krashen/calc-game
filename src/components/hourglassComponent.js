@@ -54,12 +54,11 @@ const Hourglass = () => {
 		if (gameInitialized) {
 
 			let timeout = setTimeout(() => {
-
 					// timer logic
 					if( !gameStopped ){
 						if (resetPlease) {
 							setCount(() => timeMultiplied);
-							setScore((score) => score + (count * level));
+							setScore((score) => score + sublevel + (count * level));
 							resetPlease = false;				
 						}
 						else if (count > 0) {	
