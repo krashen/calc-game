@@ -11,7 +11,6 @@ const ScoreAdder = (props) => {
 	const { 
 		addScoreToRank,
 	} = bindActionCreators(actionCreators, dispatch);
-
 	const handleSubmit = e => {
 		e.preventDefault();
 		const res = e.target[0].value;
@@ -26,6 +25,10 @@ const ScoreAdder = (props) => {
 		} else {
 			console.log('Ponete un nombre porfa')	
 		}	
+	}
+
+	if (props.score == 0){
+		props.callback();
 	}
 
 	return (
