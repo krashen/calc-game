@@ -74,7 +74,7 @@ export const setGame = (start) => {
 	if (start) {
 		return (dispatch) => {
 			dispatch({
-				type: actions.START_GAME
+				type: actions.INIT_GAME
 			})
 		}	
 	}
@@ -83,6 +83,22 @@ export const setGame = (start) => {
 			type: actions.STOP_GAME
 		})
 	}			
+}
+
+export const setSubGame = (start) => {
+
+	if (start) {
+		return (dispatch) => {
+			dispatch({
+				type: actions.START_SUB_GAME
+			})
+		}	
+	}
+	return (dispatch) => {
+		dispatch({
+			type: actions.STOP_SUB_GAME
+		})
+	}	
 }
 
 export const addScoreToRank = (score) => {	

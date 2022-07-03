@@ -6,7 +6,10 @@ import { bindActionCreators} from 'redux';
 import { actionCreators } from '../indexActionCreators';
 
 const Form = () => {
-	const currentEqual = useSelector(store => store.currentEqual);	
+	const store = useSelector(store => store);
+	const currentEqual = store.currentEqual;
+	const gameInitialized = store.gameInitialized;
+	const subGameStarted = store.subGameStarted;	
 	const dispatch = useDispatch();
 	const { 
 		updateSublevel,
@@ -35,6 +38,7 @@ const Form = () => {
 	}
 
 	useEffect(() => {
+		document.getElementById("numberInputForm").reset();
 		document.getElementById("numberInput").focus();
 	},[currentEqual])
 
@@ -42,8 +46,13 @@ const Form = () => {
 		<form 
 			className="inputResult"
 			onSubmit={handleSubmit}
+			id="numberInputForm"
 		>
-			<input id="numberInput" type="number" />
+			<input
+				id="numberInput"
+				type="number"
+				disabled={!gameInitialized || !subGameStarted}
+			/>
 			<button type="submit" />
 		</form>
 	);

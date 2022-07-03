@@ -9,9 +9,25 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+html {
+  height: 100%;
+}
+body {
+  background: url("./images/wood.jpg") no-repeat center;
+  background-size: cover;
+  height: 100%;
+}
 
 .App {  
-  text-align: center;
+  padding: 60px 00 00 00;
+}
+
+.boardContainer {
+  background: url("./images/board.png") no-repeat center;
+  background-size: contain;
+  width: 555px;
+  margin: 00 auto;
+  height: 340px;
 }
 
 .inputResult button {
@@ -22,20 +38,134 @@ input[type=number] {
   text-align: center;
 }
 
-.App.gameFinished .displayContainer, 
-.App.gameFinished .inputResult, 
-.App.gameFinished .hourglass,
-.App.gameInitialized .scoreTable,
-.App.gameInitialized .startButton
+.App.gameFinished .displayContainer h2, 
+.App.gameFinished .displayContainer h3, 
+.App.gameInitialized .scoreTable
 {
   display: none;
 }
 
-.App.gameInitialized .displayContainer, 
-.App.gameInitialized .inputResult, 
-.App.gameInitialized .hourglass,
-.App.gameFinished .scoreTable,
-.App.gameFinished .startButton
+.App.gameInitialized .displayContainer h2, 
+.App.gameInitialized .displayContainer h3,
+.App.gameFinished .scoreTable
 {
   display: block;
+}
+
+.buttonAndDisplay {
+  position: relative;
+  padding: 17px 00 00 00;
+}
+
+.startButton {
+  width: 95px;
+  height: 95px;
+  position: absolute;
+  left: 30px;
+  top: 104px;
+}
+
+.startButton button {
+  border: none;
+  display: block;
+  background: url("./images/start.png") no-repeat;
+  cursor: pointer;
+  width: 95px;
+  height: 95px;
+}
+
+.startButton button:disabled {
+  cursor: default;
+}
+
+.startEnabled button {
+  background-position: top left;
+}
+
+.startDisabled button {
+  background-position: top right;
+}
+
+.displayContainer {
+   background: url("./images/display.png") no-repeat;
+   background-size: contain;
+   margin: 00px auto 00 auto;
+   width: 264px;
+   height: 232px;
+   display: block;
+}
+
+.display {
+  text-align: center;
+  color: #b1e5a4;
+  font-family: 'Allerta Stencil', sans-serif;
+  padding: 52px 00 00 00;
+  vertical-align: middle;
+}
+.display h2 {
+  padding: 00;
+  margin: 00;
+  font-size: 40px;
+  line-height: normal;
+  height: 35px;
+}
+.display h3 {
+  padding: 00;
+  margin: 00;
+  font-size: 30px;
+  line-height: normal;
+  color: #89bd7d;
+  height: 27px;
+}
+
+.inputResult {
+  display: block;
+}
+.inputResult input{
+  display: block;
+  margin: 00 auto;
+  background: url("./images/input.png") no-repeat center;
+  background-size: cover;
+  border: none;
+  outline: none;
+  padding: 00;
+  width:  190px;
+  height: 45px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.lightsContainer {
+  position: absolute;
+  overflow: hidden;
+  top: 44px;
+  right: 110px;
+}
+
+.lightsContainer div{
+  width: 20px;
+  height: 20px;
+  background: url("./images/light.png") no-repeat;
+  background-size: cover;
+  background-position: top right;
+  margin:00 00 10px 00;
+}
+
+.lightsContainer div.on {
+  background-position: top left;
+}
+
+.hourglass {
+  padding: 15px 00 00 00;
+}
+
+.hourglass .progress {
+  background: url("./images/barWood.png") no-repeat;
+  background-size: contain;
+  width: 329px;
+  height:  56px;
+  padding: 37px 15px 27px 14px;
+  box-sizing: content-box;
+  margin: 00 auto;
 }

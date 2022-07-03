@@ -8,6 +8,7 @@ import Form  from './components/formComponent';
 import Hourglass from './components/hourglassComponent';
 import StartButton from './components/startButtonComponent';
 import ScoreTable from './components/scoresTableComponent';
+import Lights from './components/lightsComponent';
 
 // Store
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,11 +16,14 @@ import { actionCreators } from './indexActionCreators';
 import { persistor } from './store/index';
 
 //Styles
-import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
+
 
 function App() {
-  const gameInitialized = useSelector(store => store.gameInitialized);
+  const store = useSelector(store => store);
+  const gameInitialized = store.gameInitialized;
+  const level = store.level;
   const dispatch = useDispatch();
   const { resetScore } = bindActionCreators(actionCreators, dispatch);
   const purgeScore = () => {
@@ -32,12 +36,17 @@ function App() {
   
   return (
     <div className={`App ${ gameInitialized ? "gameInitialized" : "gameFinished" }`}>
-      <div className="displayContainer">
-        <Display />
+      <div className="boardContainer">
+        <div className="buttonAndDisplay">
+          <StartButton />
+          <div className="displayContainer">
+            <Display />
+          </div>
+          <Lights level={level} />
+        </div>
+        <Form />
+        <Hourglass />
       </div>
-      <Form />
-      <StartButton />
-      <Hourglass />
       <ScoreTable />
       <button className="resetButton" onClick={purgeScore}>Reset Score</button>
     </div>

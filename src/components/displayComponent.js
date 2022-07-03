@@ -1,6 +1,5 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-//import PropTypes from 'prop-types';
 
 const Display = () => {
 	const sumNumbers = useSelector(store => store.sumNumbers);
@@ -12,12 +11,5 @@ const Display = () => {
 		</div>
 	);		
 }
-
-
-// Validates props
-//Display.propTypes = {
-//  val1: PropTypes.number,
-//  val2: PropTypes.number
-//}
 
 export default Display
