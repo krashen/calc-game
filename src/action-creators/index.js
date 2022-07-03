@@ -12,7 +12,6 @@ export const updateSumNumbers = () => {
 			payload: sumNumbers
 		})
 	}
-
 }
 
 export const updateCurrentEqual = () => {
@@ -23,7 +22,6 @@ export const updateCurrentEqual = () => {
 			payload: getState().sumNumbers.reduce((a,b) => a + b)
 		})
 	}
-
 }
 
 export const updateSublevel = (reset = false) => {	
@@ -39,7 +37,6 @@ export const updateSublevel = (reset = false) => {
 			})	
 		}		
 	}	
-
 }
 
 export const updateTimer = () => {	
@@ -51,7 +48,6 @@ export const updateTimer = () => {
 			payload: level * config.TIMER_INCREASE_FACTOR
 		})		
 	}
-
 }
 
 export const updateLevel = (reset = false) => {
@@ -72,7 +68,6 @@ export const updateLevel = (reset = false) => {
 		}	
 	}		
 }
-
 
 export const setGame = (start) => {
 

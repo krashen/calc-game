@@ -1,4 +1,4 @@
-import React from 'react';
+import { React, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators} from 'redux';
 
@@ -34,12 +34,16 @@ const Form = () => {
 		}	
 	}
 
+	useEffect(() => {
+		document.getElementById("numberInput").focus();
+	},[currentEqual])
+
 	return (
 		<form 
 			className="inputResult"
 			onSubmit={handleSubmit}
 		>
-			<input type="number" />
+			<input id="numberInput" type="number" />
 			<button type="submit" />
 		</form>
 	);

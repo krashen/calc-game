@@ -28,6 +28,7 @@ const ScoreAdder = (props) => {
 
 	// if 0 points restarts the game
 	useEffect(() => {
+		document.getElementById("addScoreInput").focus();
 		if (props.score == 0){
 			props.callback();
 		}	
@@ -39,7 +40,7 @@ const ScoreAdder = (props) => {
 			className="inputName"
 			onSubmit={handleSubmit}
 		>
-			<input type="text" placeholder="nombre" />
+			<input type="text" id="addScoreInput" placeholder="nombre" />
 			<button type="submit">Sipi</button>
 		</form>
 	);		
