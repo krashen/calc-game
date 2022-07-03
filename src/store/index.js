@@ -7,15 +7,7 @@ import { persistReducer, persistStore } from 'redux-persist';
 const persistConfig = {
 	key: 'root',
 	storage,
-	whitelist: ['rank'],
-	blacklist: [
-		'level',
-		'sublevel',
-		'currentEqual',
-		'timer',
-		'gameinInitialized',
-		'sumNumbers',
-	]
+	whitelist: ['rank']
 }
 
 const persistedReducer = persistReducer(persistConfig, reducers);

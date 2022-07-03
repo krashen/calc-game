@@ -51,34 +51,37 @@ const Hourglass = () => {
 
 	useEffect(() => {
 
-		let timeout = setTimeout(() => {
+		if (gameInitialized) {
 
-				// timer logic
-				if( !gameStopped ){
-					if (resetPlease && gameInitialized) {
-						setCount(() => timeMultiplied);
-						setScore((score) => score + (count * level));
-						resetPlease = false;				
+			let timeout = setTimeout(() => {
+
+					// timer logic
+					if( !gameStopped ){
+						if (resetPlease) {
+							setCount(() => timeMultiplied);
+							setScore((score) => score + (count * level));
+							resetPlease = false;				
+						}
+						else if (count > 0) {	
+							setCount((count) => count - 1)	
+						} else {
+							// this stops the game, but doesn't reset, waiting for score to be pushed
+							setGameStopped(() => true);
+
+							// clean timeout
+							clearTimeout(timeout);
+							timeout = null;
+
+							// restart store
+							updateSublevel(true);
+							updateLevel(true);
+
+							// rest of resetting in callback passed to Score Adder
+						}
 					}
-					else if (count > 0) {	
-						setCount((count) => count - 1)	
-					} else {
-						// this stops the game, but doesn't reset, waiting for score to be pushed
-						setGameStopped(() => true);
-
-						// clean timeout
-						clearTimeout(timeout);
-						timeout = null;
-
-						// restart store
-						updateSublevel(true);
-						updateLevel(true);
-
-						// rest of resetting in callback passed to Score Adder
-					}
-				}
-			}, 1000/config.TIMER_SPEED_FACTOR);
-			return () => clearTimeout(timeout)
+				}, 1000/config.TIMER_SPEED_FACTOR);
+				return () => clearTimeout(timeout)
+			}
 		}
 	);
 
