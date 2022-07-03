@@ -7,7 +7,7 @@
   # directory if one has been set, or the root directory if 
   # a base has not been set. This sample publishes the directory 
   
-  publish = ""
+  publish = "build/"
 
   # Default build command.
   command = "CI= npm run build"
