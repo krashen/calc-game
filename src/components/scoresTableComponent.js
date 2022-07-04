@@ -7,23 +7,19 @@ const ScoresTable = () => {
 	
 	return (
 		<div className="scoreTable">
-			<h2>Rank:</h2>
-			<Table striped bordered hover>
-				<thead>
-					<tr>
-						<th>Name</th>
-						<th>Score</th>
-					</tr>
-				</thead>
-				<tbody>
-					{rank.map((r,i)=>(
-						<tr key={i}>
-							<td>{r.name}</td>
-							<td>{r.score}</td>
-						</tr> 
-					))}
-				</tbody>
-			</Table>
+			<div className="scoreTableRepeat">
+				<Table>
+					<tbody>
+						{rank.map((r,i)=>(
+							<tr key={i}>
+								<td>{r.name}</td>
+								<td className="scoreTableScore">{r.score}</td>
+							</tr> 
+						))}
+					</tbody>
+				</Table>
+			</div>
+			<div className="scoreBottom"></div>
 		</div>
 	);		
 }

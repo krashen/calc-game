@@ -23,6 +23,7 @@ import './App.css';
 function App() {
   const store = useSelector(store => store);
   const gameInitialized = store.gameInitialized;
+  const rankExists = store.rank.length ? true : false;
   const level = store.level;
   const dispatch = useDispatch();
   const { resetScore } = bindActionCreators(actionCreators, dispatch);
@@ -48,7 +49,12 @@ function App() {
         <Hourglass />
       </div>
       <ScoreTable />
-      <button className="resetButton" onClick={purgeScore}>Reset Score</button>
+      { rankExists && 
+        <div className="resetButtonBox">
+          <button 
+          className="resetButton"
+          onClick={purgeScore}>Reset score</button>
+        </div>}
     </div>
   );
 }

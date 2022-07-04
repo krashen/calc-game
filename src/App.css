@@ -19,7 +19,7 @@ body {
 }
 
 .App {  
-  padding: 60px 00 00 00;
+  padding: 60px 00 60px 00;
 }
 
 button {
@@ -28,11 +28,10 @@ button {
 }
 
 .boardContainer {
-  background: url("./images/board.png") no-repeat center;
+  background: url("./images/board.png") no-repeat center top;
   background-size: contain;
   width: 555px;
   margin: 00 auto;
-  height: 340px;
 }
 
 .inputResult button {
@@ -167,7 +166,7 @@ button {
 }
 
 .hourglass {
-  padding: 27px 00 00 00;
+  padding: 48px 00 00 00;
 }
 
 .hourglass .progress {
@@ -217,6 +216,21 @@ button {
   border-color: #bbb;
   font-size: 15px;
 }
+.inputName input::placeholder {
+  color: #c68787;
+  opacity: 0.9;
+  font-size: 12px;
+}
+.inputName.noName input {
+  background: #c68787;
+  outline: none;
+  color: #fff;
+}
+.inputName.noName input::placeholder {
+  color: #fff;
+  opacity: 0.5;
+  font-size: 12px;
+}
 .inputName button {
   display: none;
 }
@@ -225,4 +239,58 @@ button {
   font-weight: bold;
   font-size: 30px;
   padding: 00 00 10px 00;
+}
+
+.scoreTable {
+  width: 331px;
+  margin: 00 auto 20px;
+  filter: drop-shadow(0px 20px 2px rgba(0, 0, 0, 0.71));
+  font-weight: bold;
+  margin-top: -5px;
+  font-size: 20px;
+  font-family: 'Allerta Stencil', sans-serif;
+}
+.scoreTable table {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+.scoreTable td {
+  color: #e6dc88;
+  border: none;
+  filter: drop-shadow(0px 3px 1px rgba(0, 0, 0, 0.9));
+  padding: 8px 00 8px 00;
+}
+.scoreTable td.scoreTableScore {
+  text-align: right;
+  color: #bb97c4;
+}
+.scoreTable .scoreTableRepeat {
+  background: url("./images/scoreRepeat.png") center top repeat-y;
+  padding: 40px 40px 00 40px;
+}
+.scoreTable .scoreBottom {
+  background: url("./images/scoreBottom.png") center top no-repeat;
+  height: 48px;
+}
+
+.resetButtonBox {
+  margin:  0 auto;
+  width: 331px
+}
+
+button.resetButton {
+  display: inline-block;
+  opacity: 0.7;
+  font-size: 13px;
+  border-radius: 3px;
+  background:  none;
+  font-weight: bold;
+  padding: 4px;
+  margin-left: 35px;
+  color: #fff;
+  cursor: pointer;
+}
+button.resetButton:hover {
+  opacity: 1;
 }
