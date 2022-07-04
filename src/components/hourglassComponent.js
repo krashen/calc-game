@@ -19,7 +19,8 @@ const Hourglass = () => {
 		updateLevel,
 		setGame,
 		setSubGame,
-		setFail
+		setFail,
+		updateTimer
 	} = bindActionCreators(actionCreators, dispatch);
 
 	const store = useSelector(store => store);
@@ -43,7 +44,7 @@ const Hourglass = () => {
 	// use State hook to run the timer and gather score
 	const [count, setCount] = useState(timeMultiplied);	
 	const [score, setScore] = useState(0);
-
+	
 	useEffect(() => {
 
 		if (gameInitialized) {
@@ -65,6 +66,7 @@ const Hourglass = () => {
 						}
 						else {
 							// this stops the game, but doesn't reset, waiting for score to be pushed
+							
 							setCount(() => 0);
 							setSubGame(false);
 							clearTimeout(timeout);
@@ -84,12 +86,13 @@ const Hourglass = () => {
 		setScore(() => 0);
 
 		// + 1 to make it different and keep useEffect running
-		setCount(() => timeMultiplied + 1);
+		setCount(() => config.INITIAL_TIMER * config.TIMER_SPEED_FACTOR + 1);
 
 		// resets the game
 		setGame(false);
 		updateSublevel(true);
 		updateLevel(true);
+		updateTimer();
 	}
 
 	return (

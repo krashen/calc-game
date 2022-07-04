@@ -45,7 +45,7 @@ export const updateTimer = () => {
 		const level = getState().level		
 		dispatch({
 			type: actions.UPDATE_TIMER,
-			payload: level * config.TIMER_INCREASE_FACTOR
+			payload: level * config.SECONDS_BY_LEVEL
 		})		
 	}
 }
