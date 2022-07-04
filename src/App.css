@@ -40,6 +40,10 @@ button {
   margin: 00 auto;
 }
 
+.gameInitialized .boardContainer {
+  cursor: none;
+}
+
 .inputResult button {
   display: none;
 }

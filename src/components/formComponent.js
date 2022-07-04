@@ -37,11 +37,33 @@ const Form = () => {
 			}	
 		}	
 	}
-
 	useEffect(() => {
+
 		document.getElementById("numberInputForm").reset();
 		document.getElementById("numberInput").focus();
+
 	},[currentEqual, subGameStarted, gameInitialized])
+
+
+	//--- Avoid cursor moving back
+	const moveCursorToEnd = (el, l) => {
+		el.type = 'text';
+		el.setSelectionRange(l, l);
+		el.type = 'number';
+	}
+
+	// Currying function to pass to addEventListener
+	const curryingCheckKey = (i) => {
+		return (e) => { if (e.keyCode === 37) moveCursorToEnd(i,i.value.length)}
+	}
+
+	useEffect(() => {
+		const inputElement = document.getElementById("numberInput");		
+		inputElement.addEventListener('keyup', curryingCheckKey(inputElement));
+		inputElement.addEventListener('keydown', curryingCheckKey(inputElement));
+	}, [])
+
+	//---------------
 
 	return (
 		<form 

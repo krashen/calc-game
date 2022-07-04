@@ -28,8 +28,8 @@ function App() {
   const dispatch = useDispatch();
   const { resetScore } = bindActionCreators(actionCreators, dispatch);
   const purgeScore = () => {
-    const input = window.prompt("Type 'delete' if you want to reset the score\nThis action can't be undone");
-    if (input === "delete") {
+    const yes = window.confirm("Are you sure you want to reset the score?\nThis action can't be undone");
+    if (yes) {
       resetScore();
       persistor.purge();
     } 
