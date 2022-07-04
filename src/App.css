@@ -11,15 +11,21 @@ input[type=number] {
 }
 html {
   height: 100%;
+  min-width: fit-content;
 }
 body {
-  background: url("./images/wood.jpg") no-repeat center;
+  background: url("./images/wood.jpg") repeat center;
   background-size: cover;
   height: 100%;
+  padding: 0;
+  margin: 0;
+  min-width: fit-content;
 }
 
 .App {  
   padding: 60px 00 60px 00;
+  margin: 00 auto;
+  width: 555px;
 }
 
 button {
