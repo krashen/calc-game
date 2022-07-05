@@ -14,7 +14,7 @@ Score table is local and only top ten scores are displayed. You can reset the ra
 
 ## Local
 
-Run `npm install` inside the project folder, once finished installing run `npm start`
+Run `npm install` inside the project folder. Once finished installing run `npm start`. Go to [http://localhost:3000/](http://localhost:3000/) to play the game.
 
 
 ## Config 
