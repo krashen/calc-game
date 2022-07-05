@@ -8,7 +8,7 @@ const sublevelReducer = (state = 1, action) => {
 			return 1
 		
 		case actions.UPDATE_SUBLEVEL:
-			return state + 1;
+			return state + 1
 
 		default:
 			return state;

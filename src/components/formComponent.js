@@ -16,7 +16,6 @@ const Form = () => {
 		updateLevel,
 		updateSumNumbers,
 		updateCurrentEqual,
-		updateTimer,
 		setFail
 		} = bindActionCreators(actionCreators, dispatch);
 
@@ -31,7 +30,6 @@ const Form = () => {
 				updateSublevel();
 				updateSumNumbers();
 				updateCurrentEqual();
-				updateTimer();
 			} else {
 				setFail(true);
 			}	

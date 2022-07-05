@@ -5,7 +5,6 @@ import rankReducer from "./rankReducer";
 import currentEqualReducer from "./currentEqualReducer";
 import sumNumbersReducer from "./sumNumbersReducer";
 import gameInitializedReducer from "./gameInitializedReducer";
-import timerReducer from "./timerReducer";
 import subGameStartedReducer from "./subGameStartedReducer";
 import failReducer from "./failReducer";
 
@@ -16,7 +15,6 @@ const reducers = combineReducers({
 		currentEqual: currentEqualReducer,
 		sumNumbers: sumNumbersReducer,
 		gameInitialized: gameInitializedReducer,
-		timer: timerReducer,
 		subGameStarted: subGameStartedReducer,
 		fail: failReducer
 	})

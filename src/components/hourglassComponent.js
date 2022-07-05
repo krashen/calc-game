@@ -19,8 +19,7 @@ const Hourglass = () => {
 		updateLevel,
 		setGame,
 		setSubGame,
-		setFail,
-		updateTimer
+		setFail
 	} = bindActionCreators(actionCreators, dispatch);
 
 	const store = useSelector(store => store);
@@ -30,49 +29,58 @@ const Hourglass = () => {
 	const sublevel = store.sublevel;
 	const level = store.level;
 	const subGameStarted = store.subGameStarted;
-	const timer = store.timer;
-	const timeMultiplied = timer*config.TIMER_SPEED_FACTOR; 
-
-	// keeps the timer running and resets if sublevel changed
-	let resetPlease = false;
+	const timePerLevel = config.SECONDS_BY_LEVEL * config.TIMER_SPEED_FACTOR; // also INITIAL TIME
 	
-	// checks if sublevel changes to reset the timer
-	useEffect(() => {
-		resetPlease = true; 
-	},[sublevel]);
-
-	// use State hook to run the timer and gather score
-	const [count, setCount] = useState(timeMultiplied);	
 	const [score, setScore] = useState(0);
+	const [time, setTime] = useState(timePerLevel);
+	const [resetCount, setResetCount] = useState(false);
+	const [count, setCount] = useState(time);
+
+	// InitAux makes sure ResetCount is not true on mounting
+	const [initAux, setInitAux] = useState(true);
+
+	// initSwitch makes sure useEffect() is executed at the beggining
+	const [initSwitch, setInitSwitch] = useState(true);	
+	
+	useEffect(() => {
+		if (!initAux){
+			setResetCount(() => true);
+			setTime(() => recursiveIncrease(timePerLevel, level, config.ADDED_TIME_MULTIPLIER));	
+		}
+		setInitAux(() => false)
+		
+	},[sublevel, initSwitch]);
+
+	const recursiveIncrease = (t, l, m) => {
+		if (l <= 1) return t
+		return t + recursiveIncrease(t*m, l-1, m)
+	}
 	
 	useEffect(() => {
 
 		if (gameInitialized) {
-
 			let timeout = setTimeout(() => {
-					// timer logic
 					if( subGameStarted ){
-						if (resetPlease) {
-							setCount(() => timeMultiplied);
-							setScore((score) => score + sublevel + ((count*100)/timeMultiplied * level));
-							resetPlease = false;				
+						if (resetCount) {
+							setCount(() => time);
+							setScore((score) => score + sublevel + (((count*100)/time) * level));
+							setResetCount(() => false);				
 						}
 						else if (fail) {
 							setFail(false);
-							setCount((count) => count - (timeMultiplied * (config.FAIL_PERCENTAGE/100)));
+							setCount((count) => count - (time * (config.FAIL_PERCENTAGE/100)));
 						}
 						else if (count > 0) {	
 							setCount((count) => count - 1)
 						}
 						else {
-							// this stops the game, but doesn't reset, waiting for score to be pushed
-							
+							// this stops the game, but doesn't reset, waits for score to be pushed
+							// - resetting in callback passed to Score Adder						
 							setCount(() => 0);
 							setSubGame(false);
+							setTime(() => 0);
 							clearTimeout(timeout);
-							timeout = null;
-
-							// resetting in callback passed to Score Adder
+							timeout = null;						
 						}
 					}
 				}, 1000/config.TIMER_SPEED_FACTOR);
@@ -86,13 +94,15 @@ const Hourglass = () => {
 		setScore(() => 0);
 
 		// + 1 to make it different and keep useEffect running
-		setCount(() => config.INITIAL_TIMER * config.TIMER_SPEED_FACTOR + 1);
+		setTime(() => timePerLevel);
+		setCount(() => timePerLevel + 1);
+		setInitAux(() => true);
+		setInitSwitch(() => !initSwitch);
 
 		// resets the game
-		setGame(false);
 		updateSublevel(true);
+		setGame(false); // this set is an action, not a Hook setter
 		updateLevel(true);
-		updateTimer();
 	}
 
 	return (
@@ -100,7 +110,7 @@ const Hourglass = () => {
 			<ProgressBar 
 				now={count} 
 				key={1} 
-				max={timeMultiplied} 
+				max={time} 
 			/>
 			{ !subGameStarted && gameInitialized &&
 				<ScoreAdder

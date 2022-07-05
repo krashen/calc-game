@@ -27,6 +27,7 @@ export const updateCurrentEqual = () => {
 export const updateSublevel = (reset = false) => {	
 
 	return (dispatch, getState) => {
+
 		if (reset || getState().sublevel == config.SUBLEVEL_LENGTH) {
 			dispatch({
 				type: actions.RESET_SUBLEVEL
@@ -37,17 +38,6 @@ export const updateSublevel = (reset = false) => {
 			})	
 		}		
 	}	
-}
-
-export const updateTimer = () => {	
-
-	return (dispatch, getState) => {
-		const level = getState().level		
-		dispatch({
-			type: actions.UPDATE_TIMER,
-			payload: level * config.SECONDS_BY_LEVEL
-		})		
-	}
 }
 
 export const updateLevel = (reset = false) => {
