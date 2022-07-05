@@ -1,70 +1,31 @@
-# Getting Started with Create React App
+# Calc Game
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Simple calculation game built with [React](https://reactjs.org/) and [React Redux](https://react-redux.js.org/) 
 
-## Available Scripts
+## Version 1.0.0
 
-In the project directory, you can run:
+Check it out [here](https://master--calc-game.netlify.app/).
 
-### `npm start`
+This version only includes addition. Start the game and type what the result is.
+If your answer is correct your score will be increased based on how fast you came to the correct value and the current level (level is indicated by the green light at the right of the display). If your answer is incorrect the timer will decrease some percentage and display the same addition. 
+The game ends when the time reaches zero. 
+Score table is local and only top ten scores are displayed. You can reset the rank anytime.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Local
 
-### `npm test`
+Run `npm install` inside the project folder, once finished installing run `npm start`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Config 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+`/src/constants.config.js` holds the game configuration:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+| Const                   |   Type  | Description                                                                                                                                                                                                                                                                                                                                                                                              |
+|-------------------------|:-------:|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `INITIAL_LEVEL`         | **int** | Level at the start of the game, number of digits in operation match the current level                                                                                                                                                                                                                                                                                                                    |
+| `SUBLEVEL_LENGTH`       | **int** | Number of correct answer needed to level up.                                                                                                                                                                                                                                                                                                                                                             |
+| `FAIL_PERCENTAGE`       | **int** | By how much percentage the timer is reduced for every incorrect answer.<br>This percentage is always based on the max value of the current timer.                                                                                                                                                                                                                                                        |
+| `SECONDS_BY_LEVEL`      | **int** | Duration of level. This value is multiplied by the level number to get the current timer length.                                                                                                                                                                                                                                                                                                         |
+| `ADDED_TIME_MULTIPLIER` | **num** | Ratio of time added by subsequent levels. Between `0` and `1`. <br>This operation is recursive, meaning each amount of time added is further reduced as levels progress.<br>A value of `0` will add no time on new levels, i.e: all levels will have the same timer duration defined in `SECONDS_BY_LEVEL`.<br>A value of `1` will add the same amount of time each level defined in `SECONDS_BY_LEVEL`. |
+| `TIMER_SPEED_FACTOR`    | **int** | Times per second the timer updates. Lower numbers will reduce the processing cost but make the timer less precise.                                                                                                                                                                                                                                                                                       |
