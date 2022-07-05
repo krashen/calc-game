@@ -13,7 +13,13 @@ html {
   height: 100%;
   min-width: fit-content;
 }
+
 body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   background: url("./images/wood.jpg") repeat center;
   background-size: cover;
   height: 100%;
