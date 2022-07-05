@@ -2,12 +2,13 @@
 
 Simple calculation game built with [React](https://reactjs.org/) and [React Redux](https://react-redux.js.org/) 
 
-## Version 1.0.0
+## Version 1.0.0 - addition only
 
 Check it out [here](https://master--calc-game.netlify.app/).
 
-This version only includes addition. Start the game and type what the result is.<br><br>
-If your answer is correct your score will be increased based on how fast you came to the correct value and the current level (level is indicated by the green light at the right of the display). If your answer is incorrect the timer will decrease some percentage and display the same addition.<br>
+Start the game and type the result of the addition displayed.<br><br>
+If the answer is correct your score will be increased based on how fast you came to result and the current level (level is indicated by the green lights at the right of the display).<br><br>
+If the answer is incorrect the timer will decrease some percentage and display the same addition.<br><br>
 The game ends when the time reaches zero.<br><br>
 Score table is local and only top ten scores are displayed. You can reset the rank anytime.
 
