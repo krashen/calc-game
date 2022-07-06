@@ -51,9 +51,7 @@ const Form = () => {
 	}
 
 	// Currying function to pass to addEventListener
-	const curryingCheckKey = (i) => {
-		return (e) => { if (e.keyCode === 37) moveCursorToEnd(i,i.value.length)}
-	}
+	const curryingCheckKey = (i) => (e) => { if (e.keyCode === 37) moveCursorToEnd(i,i.value.length)}
 
 	useEffect(() => {
 		const inputElement = document.getElementById("numberInput");		

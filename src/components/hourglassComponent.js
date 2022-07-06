@@ -19,7 +19,8 @@ const Hourglass = () => {
 		updateLevel,
 		setGame,
 		setSubGame,
-		setFail
+		setFail,
+		updateFact
 	} = bindActionCreators(actionCreators, dispatch);
 
 	const store = useSelector(store => store);
@@ -41,7 +42,7 @@ const Hourglass = () => {
 
 	// initSwitch makes sure useEffect() is executed at the beggining
 	const [initSwitch, setInitSwitch] = useState(true);	
-	
+
 	useEffect(() => {
 		if (!initAux){
 			setResetCount(() => true);
@@ -75,12 +76,13 @@ const Hourglass = () => {
 						}
 						else {
 							// this stops the game, but doesn't reset, waits for score to be pushed
-							// - resetting in callback passed to Score Adder						
+							// - resetting in callback passed to Score Adder
+							updateFact(false);
 							setCount(() => 0);
 							setSubGame(false);
 							setTime(() => 0);
 							clearTimeout(timeout);
-							timeout = null;						
+							timeout = null;			
 						}
 					}
 				}, 1000/config.TIMER_SPEED_FACTOR);

@@ -6,4 +6,3 @@ export const generatePair = (seed) => {
     
     return [random1, random2];
 }
-

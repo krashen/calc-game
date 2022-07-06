@@ -2,7 +2,6 @@ import * as actions from '../constants/actions';
 import * as config from '../constants/config';
 import * as helpers from '../helpers/index';
 
-
 export const updateSumNumbers = () => {
 
 	return (dispatch, getState) => {
@@ -124,6 +123,24 @@ export const setFail = (f) => {
 			type: actions.FAIL_FALSE
 		})
 	}		
+}
+
+export const updateFact = (k = true) => {
+	
+	if (k){
+		return (dispatch) => {
+			dispatch({
+				type: actions.UPDATE_FACT,
+			})
+		}		
+	}
+
+	return (dispatch) => {
+		dispatch({
+			type: actions.EMPTY_FACT,
+		})	
+	}
+
 }
 
 

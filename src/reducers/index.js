@@ -7,6 +7,7 @@ import sumNumbersReducer from "./sumNumbersReducer";
 import gameInitializedReducer from "./gameInitializedReducer";
 import subGameStartedReducer from "./subGameStartedReducer";
 import failReducer from "./failReducer";
+import factReducer from "./factReducer";
 
 const reducers = combineReducers({
 		level: levelReducer,
@@ -16,7 +17,8 @@ const reducers = combineReducers({
 		sumNumbers: sumNumbersReducer,
 		gameInitialized: gameInitializedReducer,
 		subGameStarted: subGameStartedReducer,
-		fail: failReducer
+		fail: failReducer,
+		fact: factReducer
 	})
 
 export default reducers;

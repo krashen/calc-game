@@ -46,7 +46,7 @@ button {
   margin: 00 auto;
 }
 
-.gameInitialized .boardContainer {
+.subGameStarted .boardContainer {
   cursor: none;
 }
 
@@ -130,6 +130,24 @@ button {
   display: none;
 }
 
+.factContainer {
+  display: none;
+  position: absolute;
+  font-size: 13px;
+  font-family: monospace;
+}
+
+.factCenteredBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 118px;
+  padding: 00 26px;
+}
+
+.display.displayStopped .factContainer{
+  display: block;
+}
 .failLight {
   background: url("./images/fail.png") no-repeat right top;
   background-size: cover;

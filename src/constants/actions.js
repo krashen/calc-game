@@ -17,3 +17,5 @@ export const DO_NOTHING = "DO_NOTHING";
 export const RESET_SCORE = "RESET_SCORE";
 export const FAIL_TRUE = "FAIL_TRUE";
 export const FAIL_FALSE = "FAIL_FALSE";
+export const UPDATE_FACT = "UPDATE_FACT";
+export const EMPTY_FACT = "EMPTY_FACT";

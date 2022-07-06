@@ -23,6 +23,7 @@ import './App.css';
 function App() {
   const store = useSelector(store => store);
   const gameInitialized = store.gameInitialized;
+  const subGameStarted = store.subGameStarted;
   const rankExists = store.rank.length ? true : false;
   const level = store.level;
   const dispatch = useDispatch();
@@ -36,13 +37,11 @@ function App() {
   }
   
   return (
-    <div className={`App ${ gameInitialized ? "gameInitialized" : "gameFinished" }`}>
+    <div className={`App ${ gameInitialized ? "gameInitialized" : "gameFinished" } ${ subGameStarted ? "subGameStarted" : "subGameEnded"}`}>
       <div className="boardContainer">
         <div className="buttonAndDisplay">
           <StartButton />
-          <div className="displayContainer">
-            <Display />
-          </div>
+          <Display />
           <Lights level={level} />
         </div>
         <Form />

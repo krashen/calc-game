@@ -8,7 +8,10 @@ import { actionCreators } from '../indexActionCreators';
 
 const ScoreAdder = (props) => {
 	const dispatch = useDispatch();
-	const { addScoreToRank } = bindActionCreators(actionCreators, dispatch);
+	const { 
+		addScoreToRank,
+		updateFact
+	} = bindActionCreators(actionCreators, dispatch);
 	const store = useSelector(store => store);
 	const [nameSent, setNameSent] = useState(true);
 	const handleSubmit = e => {
@@ -32,7 +35,9 @@ const ScoreAdder = (props) => {
 	useEffect(() => {
 		if (props.score == 0){
 			props.callback();
-		}
+		} else {
+			updateFact();	
+		}	
 		document.getElementById("addScoreInput").focus();	
 	},[store.subGameStarted]);
 	
