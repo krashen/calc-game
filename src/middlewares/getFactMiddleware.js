@@ -6,8 +6,7 @@ const getFactMiddleware = (store) => (next) => (action) => {
 
     if (action.type == actions.UPDATE_FACT) {
       const getFact = async () => {
-        const req = await axios.get("https://app.pixelencounter.com/api/basic/monsters/random");
-        console.log(req);
+        const req = await axios.get("https://catfact.ninja/fact");
         action.payload = req.status === 200 ? req.data.fact : '<3';
         next(action);       
       }
