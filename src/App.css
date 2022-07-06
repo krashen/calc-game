@@ -143,6 +143,7 @@ button {
   justify-content: center;
   height: 118px;
   padding: 00 26px;
+  line-height: 11px;
 }
 
 .display.displayStopped .factContainer{

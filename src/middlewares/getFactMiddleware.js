@@ -6,8 +6,8 @@ const getFactMiddleware = (store) => (next) => (action) => {
 
     if (action.type == actions.UPDATE_FACT) {
       const getFact = async () => {
-        const req = await axios.get("http://numbersapi.com/random/math");
-        action.payload = req.status === 200 ? req.data : '<3';
+        const req = await axios.get("https://catfact.ninja/fact");
+        action.payload = req.status === 200 ? req.data.fact : '<3';
         next(action);       
       }
       getFact();
