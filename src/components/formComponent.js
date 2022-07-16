@@ -1,6 +1,7 @@
 import { React, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators} from 'redux';
+import * as helpers from '../helpers/index';
 
 // Unified action creators
 import { actionCreators } from '../indexActionCreators';
@@ -41,22 +42,12 @@ const Form = () => {
 		document.getElementById("numberInput").focus();
 
 	},[currentEqual, subGameStarted, gameInitialized])
-
-
+	
 	//--- Avoid cursor moving back
-	const moveCursorToEnd = (el, l) => {
-		el.type = 'text';
-		el.setSelectionRange(l, l);
-		el.type = 'number';
-	}
-
-	// Currying function to pass to addEventListener
-	const curryingCheckKey = (i) => (e) => { if (e.keyCode === 37) moveCursorToEnd(i,i.value.length)}
-
 	useEffect(() => {
 		const inputElement = document.getElementById("numberInput");		
-		inputElement.addEventListener('keyup', curryingCheckKey(inputElement));
-		inputElement.addEventListener('keydown', curryingCheckKey(inputElement));
+		inputElement.addEventListener('keyup', helpers.curryingCheckKey(inputElement, 37));
+		inputElement.addEventListener('keydown', helpers.curryingCheckKey(inputElement, 37));
 	}, [])
 
 	//---------------

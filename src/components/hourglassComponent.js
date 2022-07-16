@@ -2,6 +2,7 @@ import { React, useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { bindActionCreators } from "redux";
 import * as config from '../constants/config';
+import * as helpers from '../helpers/index';
 
 // Bootstrap
 import ProgressBar from 'react-bootstrap/ProgressBar';
@@ -46,16 +47,11 @@ const Hourglass = () => {
 	useEffect(() => {
 		if (!initAux){
 			setResetCount(() => true);
-			setTime(() => recursiveIncrease(timePerLevel, level, config.ADDED_TIME_MULTIPLIER));	
+			setTime(() => helpers.recursiveIncrease(timePerLevel, level, config.ADDED_TIME_MULTIPLIER));	
 		}
 		setInitAux(() => false)
 		
 	},[sublevel, initSwitch]);
-
-	const recursiveIncrease = (t, l, m) => {
-		if (l <= 1) return t
-		return t + recursiveIncrease(t*m, l-1, m)
-	}
 	
 	useEffect(() => {
 
